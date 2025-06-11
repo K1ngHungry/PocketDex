@@ -1,0 +1,86 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20vh;
+}
+
+body {
+  font-family: "Arial Black", Gadget, sans-serif;
+  /* background-color: #dddddd; */
+  background: #000000;
+  background: linear-gradient(180deg, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgb(73, 0, 115) 60%, 
+    rgb(106, 18, 154) 75%, 
+    rgb(159, 0, 162) 85%, 
+    rgb(167, 21, 84) 100%);
+  background-attachment: fixed;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 0rem;
+  font-size: 5rem;
+  font-weight: bold;
+  color: #e3ccdb;
+  text-shadow:
+    -1px -1px 0 #5f0082,
+     1px -1px 0 #5f0082,
+    -1px  1px 0 #5f0082,
+     1px  1px 0 #5f0082;
+     img {
+      margin-top: 1rem;
+     }
+}
+
+#masterball {
+    width: 3.25rem;
+    height: auto;
+    /* filter: hue-rotate(20deg) saturate(1.3) brightness(1); */
+}
+
+.index-btns {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.index-btn {
+  background-color : #413947;
+  margin-left: 10px;
+  margin-right: 10px;
+  color : #fef4f9;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 16px;
+  width : auto;
+  height : auto;
+  padding: 10px;
+}
+.index-btn:hover {background-color: #000000;}
+
+.display-cards {
+  position: absolute;
+  bottom  : 5rem;
+  left: 50%;
+  width: 400px; /* adjust as needed */
+  height: 250px;
+  margin: auto;
+}
+
+.display-card {
+  position: absolute;
+  transform: translateX(-50%) rotate(calc(var(--i) * 4deg));
+  transform-origin: 50% 350%;
+  width: 200px;
+  height : auto;
+  z-index: calc(10 + var(--i));
+  transition: transform 0.3s ease, z-index 0.2s;
+}
+
+.display-card:hover {
+  transform: translateX(-50%) rotate(calc(var(--i) * 4deg)) scale(1.08) translateY(-8px);
+  z-index: 100; /* bring hovered card to front */
+}

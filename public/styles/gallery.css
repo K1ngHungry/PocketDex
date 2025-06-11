@@ -1,0 +1,156 @@
+.subheading {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #e3ccdb;
+  padding: 20px;
+  margin-bottom: 0;
+  text-shadow:
+    -1px -1px 0 #5f0082,
+     1px -1px 0 #5f0082,
+    -1px  1px 0 #5f0082,
+     1px  1px 0 #5f0082;
+     img {
+      margin-top: 1rem;
+     }
+
+}
+.navigation {
+    display: flex;
+    position: fixed;
+    background-color: rgb(29, 17, 33);
+    height : 4rem;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.nav-btn {
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-family: "Arial Black", Gadget, sans-serif;
+    color : #fef4f9;
+    height: 100%;
+    width: auto;
+    border: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 0rem;
+    padding: 1.5rem;
+}
+
+.nav-btn:hover {
+  background-color: black;
+}
+
+.filter-row {
+    font-size: 1rem;
+    color: white;
+    padding: 20px 0;
+}
+.display-grid {
+  width: 80%;
+  margin: 0 auto;
+}
+
+input {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 10px;
+  width: 30rem;
+  height: 2rem;
+  font-size: 16px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  position : relative;
+  background-color: transparent;
+  border-radius: 12px;
+  padding: 0px;
+  /* box-shadow: 0px 4px 2px 6px rgba(233, 79, 208, 0.5); */
+  text-align: center;
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0px;
+  }
+}
+
+.card.Grass { box-shadow: 0 6px 8px 8px rgb(0, 255, 0, 0.5); }
+.card.Fire { box-shadow: 0 6px 8px 8px rgb(255, 68, 0, 0.5); } 
+.card.Water { box-shadow: 0 6px 8px 8px rgb(0, 157, 255, 0.5); }
+.card.Psychic { box-shadow: 0 6px 8px 8px rgba(184, 0, 212, 0.5); } 
+.card.Lightning { box-shadow: 0 6px 8px 8px rgba(255, 242, 0, 0.5); } 
+.card.Fighting { box-shadow: 0 6px 8px 8px rgba(255, 124, 30, 0.5); }
+.card.Darkness { box-shadow: 0 6px 8px 8px rgba(2, 69, 69, 0.5); }
+.card.Metal { box-shadow: 0 6px 8px 8px rgba(200, 230, 251, 0.5); }
+.card.Dragon { box-shadow: 0 6px 8px 8px rgba(192, 160, 0, 0.5); }
+.card.Colorless { box-shadow: 0 6px 8px 8px rgba(233, 233, 233, 0.5); }
+.card.Item { box-shadow: 0 6px 8px 8px rgba(65, 198, 255, 0.5); }
+.card.Supporter { box-shadow: 0 6px 8px 8px rgba(255, 126, 13, 0.5); }
+.card.Tool { box-shadow: 0 6px 8px 8px rgba(188, 81, 255, 0.5); }
+
+.card-wishlist {
+  font-family: monospace;
+  font-size: 1.75rem;
+  display: none;
+  position: absolute;
+  top: -0.75rem;
+  right: -1rem;
+  height: 2rem;
+  width: 2rem;
+  background: #dddddd;
+  border-radius: 50%;
+  border-color: rgba(0, 0, 0, 0.273);
+  z-index: 10;
+  text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px  1px 0 black,
+    1px  1px 0 black;
+}
+.in-wishlist {
+  color: rgb(255, 36, 116);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notin-wishlist {
+  color: #dddddd;
+}
+
+.card:hover .card-wishlist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlist-remove {
+  font-family: monospace;
+  font-size: 1.75rem;
+  color: rgb(201, 0, 0);
+  display: none;
+  position: absolute;
+  top: -0.75rem;
+  right: -1rem;
+  height: 2rem;
+  width: 2rem;
+  background: #dddddd;
+  border-radius: 50%;
+  border-color: rgba(0, 0, 0, 0.273);
+  z-index: 10;
+}
+
+.card:hover .wishlist-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

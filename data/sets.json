@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Celestial Guardians",
+    "code": "A3",
+    "release_date": "30 Apr 25",
+    "card_count": 239,
+    "img_url": "https://s3.limitlesstcg.com/pocket/sets/A3.webp",
+    "url": "https://pocket.limitlesstcg.com/cards/A3"
+  },
+  {
+    "name": "Shining Revelry",
+    "code": "A2b",
+    "release_date": "27 Mar 25",
+    "card_count": 111,
+    "img_url": "https://s3.limitlesstcg.com/pocket/sets/A2b.webp",
+    "url": "https://pocket.limitlesstcg.com/cards/A2b"
+  },
+  {
+    "name": "Triumphant Light",
+    "code": "A2a",
+    "release_date": "28 Feb 25",
+    "card_count": 96,
+    "img_url": "https://s3.limitlesstcg.com/pocket/sets/A2a.webp",
+    "url": "https://pocket.limitlesstcg.com/cards/A2a"
+  },
+  {
+    "name": "Space-Time Smackdown",
+    "code": "A2",
+    "release_date": "29 Jan 25",
+    "card_count": 207,
+    "img_url": "https://s3.limitlesstcg.com/pocket/sets/A2.webp",
+    "url": "https://pocket.limitlesstcg.com/cards/A2"
+  },
+  {
+    "name": "Mythical Island",
+    "code": "A1a",
+    "release_date": "17 Dec 24",
+    "card_count": 86,
+    "img_url": "https://s3.limitlesstcg.com/pocket/sets/A1a.webp",
+    "url": "https://pocket.limitlesstcg.com/cards/A1a"
+  },
+  {
+    "name": "Genetic Apex",
+    "code": "A1",
+    "release_date": "30 Oct 24",
+    "card_count": 286,
+    "img_url": "https://s3.limitlesstcg.com/pocket/sets/A1.webp",
+    "url": "https://pocket.limitlesstcg.com/cards/A1"
+  },
+  {
+    "name": "Promo-A",
+    "code": "P-A",
+    "release_date": "",
+    "card_count": 73,
+    "img_url": "https://s3.limitlesstcg.com/pocket/sets/P-A.webp",
+    "url": "https://pocket.limitlesstcg.com/cards/P-A"
+  }
+]

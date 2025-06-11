@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokémon TCG Gallery</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/gallery.css">
+</head>
+<body>
+  <div class="navigation">
+    <button class="nav-btn" id="home-btn" type="button"> <img src="./assets/masterball.png" id="masterball", width = 55, height = "auto"> Home</button>
+    <button class="nav-btn" id="gallery-btn" type="button">Gallery</button>
+    <button class="nav-btn" id="wishlist-btn" type="button">Wishlist</button>
+  </div>
+
+  <h1 class="subheading">Pokémon TCGP Card Gallery</h1>
+
+  <input type="text" id="search" placeholder="Search...">
+
+  <div class="display-grid">
+    <div class="filter-row">
+      Filters: 
+      <select id="filter-set">
+        <option value="">All Sets</option>
+        <option value="A1">Genetic Apex</option>
+        <option value="A1a">Mythical Island</option>
+        <option value="A2">Space-Time Smackdown</option>
+        <option value="A2a">Triumphant Light</option>
+        <option value="A2b">Shining Revelry</option>
+        <option value="A3">Celestial Guardians</option>
+        <option value="A3a">Extradimensional Crisis</option>
+      </select>
+      <select id="filter-type">
+        <option value="">All Types</option>
+        <option value="Grass">Grass</option>
+        <option value="Fire">Fire</option>
+        <option value="Water">Water</option>
+        <option value="Lightning">Lightning</option>
+        <option value="Psychic">Psychic</option>
+        <option value="Fighting">Fighting</option>
+        <option value="Darkness">Darkness</option>
+        <option value="Metal">Metal</option>
+        <option value="Dragon">Dragon</option>
+        <option value="Colorless">Colorless</option>
+      </select>
+      <select id="filter-stage">
+        <option value="">All Stages</option>
+        <option value="Basic">Basic</option>
+        <option value="Stage 1">Stage 1</option>
+        <option value="Stage 2">Stage 2</option>
+      </select>
+      <select id="filter-rarity">
+        <option value="">All Rarities</option>
+        <option value="◊">◊</option>
+        <option value="◊◊">◊◊</option>
+        <option value="◊◊◊">◊◊◊</option>
+        <option value="◊◊◊◊">◊◊◊◊</option>
+        <option value="☆">☆</option>
+        <option value="☆☆">☆☆</option>
+        <option value="☆☆☆">☆☆☆</option>
+        <option value="Crown Rare">Crown Rare</option>
+      </select>
+      <select id="sort-by">
+        <option value="set-number">Set &amp; Number</option>
+        <option value="name">Name</option>
+        <option value="type">Type</option>
+        <option value="rarity-ascending">Rarity (Ascending)</option>
+        <option value="rarity-descending">Rarity (Descending)</option>
+      </select>
+      <button id="reset-button" type="button">Reset</button>
+    </div>
+
+    <div id="card-container" class="card-grid"></div>
+  </div>
+
+  <script src="scripts/wishlist_utils.js" defer></script>
+  <script src="scripts/card_utils.js" defer></script>
+  <script src="scripts/gallery.js" defer></script>
+</body>
+</html>
