@@ -37,50 +37,6 @@ const typeDict = {
     "" : 8
   }
 
-let allSets = [];
-let allCards = [];
-
-function cmpSetNumber(c1, c2) {
-  if (c1.setcode < c2.setcode) return -1;
-  if (c1.setcode > c2.setcode) return 1;
-  return Number(c1.number) - Number(c2.number);
-}
-
-function cmpName (c1, c2) {
-  return c1.name.localeCompare(c2.name);
-}
-
-function cmpType(c1,c2) {
-  const t1 = (c1.type || c1.category);
-  const t2 = (c2.type || c2.category);
-  if (t1 != t2) {
-    return typeDict[t1] - typeDict[t2];
-  }
-  return cmpSetNumber(c1,c2);
-}
-
-function cmpRarityA(c1,c2) {
-  let r1;
-  c1.rarity != null ? r1 = c1.rarity : r1 = "";
-  let r2;
-  c2.rarity != null ? r2 = c2.rarity : r2 = "";
-  if (r1 != r2) {
-    return rarityDict[r1] - rarityDict[r2];
-  }
-  return cmpSetNumber(c1,c2);
-}
-
-function cmpRarityB(c1,c2) {
-  let r1;
-  c1.rarity != null ? r1 = c1.rarity : r1 = "";
-  let r2;
-  c2.rarity != null ? r2 = c2.rarity : r2 = "";
-  if (r1 != r2) {
-    return rarityDict[r2] - rarityDict[r1];
-  }
-  return cmpSetNumber(c1,c2);
-}
-
 function createInfo(card) {
   const div = document.createElement("div");
   div.innerHTML = `
@@ -108,55 +64,33 @@ function updateWishlist(cardId, button) {
   }
 }
 
-function renderCards() {
-  const textFilter = searchEl.value.toLowerCase();
-  const setFilter = setEl.value;
-  const typeFilter = typeEl.value;
-  const stageFilter = stageEl.value;
-  const rarityFilter = rarityEl.value;
-  const sortBy = sortByEl.value;
+async function renderCards() {
+  const params = new URLSearchParams();
+  if (searchEl.value) params.append("search", searchEl.value);
+  if (setEl.value) params.append("set_id", setEl.value);
+  if (typeEl.value) params.append("type", typeEl.value);
+  if (stageEl.value) params.append("stage", stageEl.value);
+  if (rarityEl.value) params.append("rarity", rarityEl.value);
+  if (sortByEl.value) params.append("sortby", sortByEl.value);
 
-  const filtered = allCards
-    .filter(card => card.name.toLowerCase().includes(textFilter))
-    .filter(card => setFilter === "" || card.setcode === setFilter)
-    .filter(card => typeFilter === "" || card.type === typeFilter)
-    .filter(card => stageFilter === "" || card.stage === stageFilter)
-    .filter(card => rarityFilter === "" || card.rarity === rarityFilter);
-  
-  let sorted = filtered
-  switch(sortBy) {
-    case "set-number":
-      sorted = filtered.sort(cmpSetNumber);
-      break;
-    case "name":
-      sorted = filtered.sort(cmpName);
-      break;
-    case "type":
-      sorted = filtered.sort(cmpType);
-      break;
-    case "rarity-ascending":
-      sorted = filtered.sort(cmpRarityA);
-      break;
-    case "rarity-descending":
-      sorted = filtered.sort(cmpRarityB);
-      break;
-  }
+  const response = await fetch(`http://localhost:3000/cards?${params.toString()}`);
+  const cards = await response.json();
 
   container.innerHTML = '';
-  for (const card of sorted) {
+  for (const card of cards) {
     const div = createCardElem(card);
-    const button = createWishlistBtn(card);
+    // const button = createWishlistBtn(card);
 
-    if (wishlist.has(`${card.setcode}-${card.number}`)) {
-      button.classList.remove("notin-wishlist");
-      button.classList.add("in-wishlist");
-    }
-    div.appendChild(button);
+    // if (wishlist.has(`${card.setcode}-${card.number}`)) {
+    //   button.classList.remove("notin-wishlist");
+    //   button.classList.add("in-wishlist");
+    // }
+    // div.appendChild(button);
     container.appendChild(div);
   }
 }
 
-fetch('../data/sets.json')
+fetch('http://localhost:3000/sets')
   .then(response => response.json())
   .then(data => allSets = data)
   .catch(err => {
@@ -164,17 +98,9 @@ fetch('../data/sets.json')
     console.error(err);
   });
 
-fetch('../data/cards.json')
-  .then(response => response.json())
-  .then(data => {
-    allCards = data;
-    return loadWishlist();
-  })
-  .then(() => {renderCards();})
-  .catch(err => {
-    container.innerHTML = '<p>Error loading cards.json. Make sure it exists and is in the same folder.</p>';
-    console.error(err);
-  });
+//loadWishlist().then(() => 
+renderCards();
+
 
 searchEl.addEventListener('input',  renderCards);
 setEl.addEventListener('change', renderCards);

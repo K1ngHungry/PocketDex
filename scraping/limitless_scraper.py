@@ -263,7 +263,7 @@ def main():
     with open("../data/sets.json", "w") as f:
         json.dump([s.__dict__ for s in sets], f, indent=2)
     print(f"Saved {len(sets)} sets to sets.json.")
-    
+
     cards = []
     for set in sets:
          print(f"Scraping {set.name} ({set.code})...")
@@ -274,7 +274,7 @@ def main():
 
     with open("../data/cards.json", "w") as f:
         json.dump([card.to_dict() for card in cards], f, indent=2)
-    print(f"Saved {len(cards)} cards to cards.json.")
+    print(f"Saved {len(cards)} cards to cards.json.") 
 
     print(f"Saving cards to database...")
     for card in cards:
