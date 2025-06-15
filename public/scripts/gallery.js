@@ -9,59 +9,50 @@ const resetBtn = document.getElementById('reset-button');
 const homeBtn = document.getElementById('home-btn');
 const galleryBtn = document.getElementById('gallery-btn');
 const wishlistBtn = document.getElementById('wishlist-btn');
+
 const typeDict = {
-    "Grass" : 0,
-    "Fire" : 1,
-    "Water" : 2,
-    "Lightning" : 3,
-    "Psychic" : 4,
-    "Fighting" : 5,
-    "Darkness" : 6,
-    "Metal" : 7,
-    "Dragon" : 8,
-    "Colorless" : 9,
-    "Item" : 10,
-    "Supporter" : 11,
-    "Tool" : 12
-  }
-
-  const rarityDict = {
-    "\u25ca" : 0,
-    "\u25ca\u25ca" : 1,
-    "\u25ca\u25ca\u25ca" : 2,
-    "\u25ca\u25ca\u25ca\u25ca" : 3,
-    "\u2606" : 4,
-    "\u2606\u2606" : 5,
-    "\u2606\u2606\u2606" : 6,
-    "Crown Rare" : 7,
-    "" : 8
-  }
-
-function createInfo(card) {
-  const div = document.createElement("div");
-  div.innerHTML = `
-      <h3>${card.name}</h3>
-      <p><strong>HP:</strong> ${card.hp}</p>
-      <p><strong>Type:</strong> ${card.type}</p>
-      <p><strong>Stage:</strong> ${card.stage}</p>
-      <p><strong>Rarity:</strong> ${card.rarity}</p>
-      <p><strong>Attack:</strong> ${card.attacks}</p>
-    `;
-  return div;
+  "Grass" : 0,
+  "Fire" : 1,
+  "Water" : 2,
+  "Lightning" : 3,
+  "Psychic" : 4,
+  "Fighting" : 5,
+  "Darkness" : 6,
+  "Metal" : 7,
+  "Dragon" : 8,
+  "Colorless" : 9,
+  "Item" : 10,
+  "Supporter" : 11,
+  "Tool" : 12
 }
-function updateWishlist(cardId, button) {
-  if (wishlist.has(cardId)) {
-    removeFromWishlist(cardId);
-    wishlist.delete(cardId);
+
+const rarityDict = {
+  "\u25ca" : 0,
+  "\u25ca\u25ca" : 1,
+  "\u25ca\u25ca\u25ca" : 2,
+  "\u25ca\u25ca\u25ca\u25ca" : 3,
+  "\u2606" : 4,
+  "\u2606\u2606" : 5,
+  "\u2606\u2606\u2606" : 6,
+  "Crown Rare" : 7,
+  "" : 8
+}
+
+function updateWishlist(user_id, card, button) {
+  const card_id = `${card.set_id}-${card.set_number}`;
+  if (wishlist.has(card_id)) {
+    removeFromWishlist(user_id, card);
+    wishlist.delete(card_id);
     button.classList.remove("in-wishlist");
     button.classList.add("notin-wishlist");
   } 
   else {
-    addToWishlist(cardId);
-    wishlist.add(cardId);
+    addToWishlist(user_id, card);
+    wishlist.add(card_id);
     button.classList.remove("notin-wishlist");
     button.classList.add("in-wishlist");
   }
+  console.log(wishlist);
 }
 
 async function renderCards() {
@@ -79,13 +70,13 @@ async function renderCards() {
   container.innerHTML = '';
   for (const card of cards) {
     const div = createCardElem(card);
-    // const button = createWishlistBtn(card);
+    const button = createWishlistBtn(user_id, card);
 
-    // if (wishlist.has(`${card.setcode}-${card.number}`)) {
-    //   button.classList.remove("notin-wishlist");
-    //   button.classList.add("in-wishlist");
-    // }
-    // div.appendChild(button);
+    if (wishlist.has(`${card.set_id}-${card.set_number}`)) {
+      button.classList.remove("notin-wishlist");
+      button.classList.add("in-wishlist");
+    }
+    div.appendChild(button);
     container.appendChild(div);
   }
 }
@@ -98,9 +89,14 @@ fetch('http://localhost:3000/sets')
     console.error(err);
   });
 
-//loadWishlist().then(() => 
-renderCards();
-
+//Load wishlist
+const user_id = 1;
+let wishlist = new Set();
+document.addEventListener("DOMContentLoaded", async () => {
+  wishlist = await loadWishlist(user_id);  // wait for it and assign result
+  console.log(wishlist);
+  renderCards();                           // now uses actual Set, not a Promise
+});
 
 searchEl.addEventListener('input',  renderCards);
 setEl.addEventListener('change', renderCards);

@@ -4,8 +4,8 @@ async function getSets() {
   const [rows] = await pool.query('SELECT * FROM sets');
   return rows;
 }
-async function getSet(id) {
-  const [rows] = await pool.query('SELECT * FROM sets WHERE set_id = ?', [id]);
+async function getSet(set_id) {
+  const [rows] = await pool.query('SELECT * FROM sets WHERE set_id = ?', [set_id]);
   return rows;
 }
 

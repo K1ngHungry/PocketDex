@@ -85,9 +85,14 @@ async function getSelectCards({set_id, type, stage, rarity, search, sortby}) {
   const [cards] = await pool.query(q, params);
   return cards;
 }
-async function getCard(set_id, set_number) {
-  const [card] = await pool.query('SELECT * FROM cards WHERE set_id = ? AND set_number = ?', [set_id, set_number]);
-  return card;
+async function getCardsByIds(card_ids) {
+  if (!card_ids || card_ids.length === 0) return [];
+
+  const conditions = card_ids.map(() => '(set_id = ? AND set_number = ?)').join(' OR ');
+  const values = card_ids.flatMap(({ set_id, set_number }) => [set_id, set_number]);
+
+  const [cards] = await pool.query(`SELECT * FROM cards WHERE ${conditions}`, values);
+  return cards;
 }
 
 // (async () => {
@@ -95,4 +100,4 @@ async function getCard(set_id, set_number) {
 //   console.log(cards);
 // })();
 
-module.exports = { getCards, getSelectCards, getCard };
+module.exports = { getCards, getSelectCards, getCardsByIds };

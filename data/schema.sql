@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS sets (
     PRIMARY KEY (set_id)
 );
 
-DROP TABLE IF EXISTS cards;
+-- DROP TABLE IF EXISTS cards;
 CREATE TABLE IF NOT EXISTS cards (
     set_id VARCHAR(5) NOT NULL,
     set_number INT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS cards (
     FOREIGN KEY (set_id) REFERENCES sets(set_id) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS attacks;
+-- DROP TABLE IF EXISTS attacks;
 CREATE TABLE IF NOT EXISTS attacks (
     set_id VARCHAR(5) NOT NULL,
     set_number INT NOT NULL,
@@ -48,4 +48,21 @@ CREATE TABLE IF NOT EXISTS attacks (
     effect TEXT,
     PRIMARY KEY (set_id, set_number, attack_id),
     FOREIGN KEY (set_id, set_number) REFERENCES cards(set_id, set_number) ON DELETE CASCADE
+);
+
+-- DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXISTS users (
+  user_id INT AUTO_INCREMENT,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  PRIMARY KEY (user_id)
+);
+
+DROP TABLE IF EXISTS wishlists;
+CREATE TABLE IF NOT EXISTS wishlists (
+  user_id INT NOT NULL,
+  set_id VARCHAR(5) NOT NULL,
+  set_number INT NOT NULL,
+  PRIMARY KEY (user_id, set_id, set_number),
+  FOREIGN KEY (set_id, set_number) REFERENCES cards(set_id, set_number) ON DELETE CASCADE
 );
