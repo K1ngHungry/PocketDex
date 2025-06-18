@@ -10,6 +10,7 @@ async function getUserWlist(user_id) {
 }
 
 async function addToWlist(user_id, set_id, set_number) {
+    console.log("Adding");
   await pool.query(
     `INSERT IGNORE INTO wishlists (user_id, set_id, set_number) VALUES (?, ?, ?)`,
     [user_id, set_id, set_number]

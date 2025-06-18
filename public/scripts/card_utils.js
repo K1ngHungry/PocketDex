@@ -6,13 +6,13 @@ function createCardElem(card) {
     return div;
 }
 
-function createWishlistBtn(user_id, card) {
+function createWishlistBtn(card) {
   const button = document.createElement("button");
   button.className = "card-wishlist notin-wishlist";
   button.title = "Wishlist";
   button.textContent = "♥";
   button.addEventListener("click", () => {
-    updateWishlist(user_id, card, button);
+    updateWishlist(card, button);
   });
   return button;
 }

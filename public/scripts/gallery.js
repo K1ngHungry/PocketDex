@@ -9,6 +9,7 @@ const resetBtn = document.getElementById('reset-button');
 const homeBtn = document.getElementById('home-btn');
 const galleryBtn = document.getElementById('gallery-btn');
 const wishlistBtn = document.getElementById('wishlist-btn');
+const logoutBtn = document.getElementById('logout-btn');
 
 const typeDict = {
   "Grass" : 0,
@@ -38,16 +39,16 @@ const rarityDict = {
   "" : 8
 }
 
-function updateWishlist(user_id, card, button) {
+function updateWishlist(card, button) {
   const card_id = `${card.set_id}-${card.set_number}`;
   if (wishlist.has(card_id)) {
-    removeFromWishlist(user_id, card);
+    removeFromWishlist(card);
     wishlist.delete(card_id);
     button.classList.remove("in-wishlist");
     button.classList.add("notin-wishlist");
   } 
   else {
-    addToWishlist(user_id, card);
+    addToWishlist(card);
     wishlist.add(card_id);
     button.classList.remove("notin-wishlist");
     button.classList.add("in-wishlist");
@@ -70,7 +71,7 @@ async function renderCards() {
   container.innerHTML = '';
   for (const card of cards) {
     const div = createCardElem(card);
-    const button = createWishlistBtn(user_id, card);
+    const button = createWishlistBtn(card);
 
     if (wishlist.has(`${card.set_id}-${card.set_number}`)) {
       button.classList.remove("notin-wishlist");
@@ -121,6 +122,8 @@ galleryBtn.addEventListener('click', () => {
 wishlistBtn.addEventListener('click', () => {
   window.location.href = "wishlist.html";
 });
+logoutBtn.addEventListener('click', () => {
+  logout();});
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
     loadWishlist().then(() => renderCards());
