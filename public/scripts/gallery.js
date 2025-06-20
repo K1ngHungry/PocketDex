@@ -78,15 +78,6 @@ async function renderCards() {
   }
 }
 
-fetch('http://localhost:3000/sets')
-  .then(response => response.json())
-  .then(data => allSets = data)
-  .catch(err => {
-    container.innerHTML = '<p>Error loading sets.json. Make sure it exists and is in the same folder.</p>';
-    console.error(err);
-  });
-
-
 searchEl.addEventListener('input',  renderCards);
 setEl.addEventListener('change', renderCards);
 typeEl.addEventListener('change', renderCards);
