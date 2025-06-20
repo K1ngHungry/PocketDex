@@ -38,6 +38,7 @@
 }
 
 #profile-icon {
+  display: none;
   width: 3rem;
   height: 3rem;
   cursor: pointer;
@@ -78,6 +79,7 @@
 }
 
 #nav-signin {
+  display: none;
   background-color: #d11b73;
   color: #fff;
   box-shadow: 0 0px 15px#fea7e0;
