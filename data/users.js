@@ -15,7 +15,7 @@ async function getUserByName(username) {
   return rows[0];
 }
 
-async function registerUser(username, password) {
+async function addUser(username, password) {
   const pw_hash = await bcrypt.hash(password, 10);
   await pool.query(
     `INSERT INTO users (username, pw_hash) VALUES (?, ?)`,
@@ -30,7 +30,7 @@ async function removeUser(user_id) {
   );
 }
 
-async function loginUser(username, password) {
+async function authUser(username, password) {
   const user = await getUserByName(username);
   console.log(user);
   if (!user) return { success: false, message: 'User not found' };
@@ -40,9 +40,5 @@ async function loginUser(username, password) {
 
   return { success: true, user_id: user.user_id, username: user.username };
 }
-// (async () => {
-//   const sets = await getSet('A1');
-//   console.log(sets);
-// })();
 
-module.exports = { getUsers, getUserById, getUserByName, registerUser, removeUser, loginUser };
+module.exports = { getUsers, getUserById, getUserByName, addUser, removeUser, authUser };

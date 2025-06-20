@@ -1,31 +1,31 @@
-const registerBtn = document.getElementById('register-btn');
-const registerForm = document.getElementById('register-form');
-const loginForm = document.getElementById('login-form');
+const signupBtn = document.getElementById('signup-btn');
+const signupForm = document.getElementById('signup-form');
+const signinForm = document.getElementById('signin-form');
 
-if (registerBtn) {
-    registerBtn.addEventListener('click', () => {
-    window.location.href = "register.html";
+if (signupBtn) {
+    signupBtn.addEventListener('click', () => {
+    window.location.href = "signup.html";
     });
 }
 
-if (registerForm) {
-    registerForm.addEventListener('submit', async (e) => {
+if (signupForm) {
+    signupForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    register(username, password);
+    signup(username, password);
     });
 }
 
-if (loginForm) {
-    loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // prevent form from reloading the page
+if (signinForm) {
+    signinForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    login(username, password);
+    signin(username, password);
     });
 }

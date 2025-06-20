@@ -1,6 +1,6 @@
-async function register(username, password) {
+async function signup(username, password) {
     try {
-        const res = await fetch('/auth/register', {
+        const res = await fetch('/auth/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -12,8 +12,7 @@ async function register(username, password) {
         const data = await res.json();
 
         if (res.ok) {
-            alert('Registration successful!');
-            window.location.href = '/login.html';
+            window.location.href = '/signin.html';
         } 
         else {
             alert(data.error);
@@ -25,9 +24,9 @@ async function register(username, password) {
     }
 }
 
-async function login(username, password) {
+async function signin(username, password) {
     try {
-        const res = await fetch('/auth/login', {
+        const res = await fetch('/auth/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,33 +37,45 @@ async function login(username, password) {
 
         const data = await res.json();
         if (res.ok) {
-            alert('Login successful!');
-            window.location.href = '/index.html';
+            const returnTo = sessionStorage.getItem('returnTo');
+            sessionStorage.removeItem('returnTo');
+            window.location.href = returnTo || '/index.html';
         } 
         else {
             alert(data.error);
         }
     } catch (err) {
-        console.error('Login failed:', err);
+        console.error('Signin failed:', err);
         alert('Something went wrong. Try again.');
     }
 }
 
-async function logout() {
+async function signout() {
   try {
-    const res = await fetch('/auth/logout', {
+    const res = await fetch('/auth/signout', {
       method: 'POST',
       credentials: 'include'
     });
 
     if (res.ok) {
-      //window.location.href = '/login.html';
+      window.location.reload();
     } else {
       const data = await res.json();
-      alert(data.error || 'Logout failed');
+      alert(data.error || 'Signout failed');
     }
   } catch (err) {
-    console.error('Logout request failed:', err);
-    alert('Could not log out. Try again.');
+    console.error('Signout request failed:', err);
+    alert('Could not sign out. Try again.');
+  }
+}
+
+async function isSignedIn() {
+  try {
+    const res = await fetch('/auth/user', { credentials: 'include' });
+    const data = await res.json();
+    return data.signedIn === true;
+  } catch (err) {
+    console.error("Signin check failed:", err);
+    return false;
   }
 }

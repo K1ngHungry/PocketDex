@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="navigation">
+    <button class="nav-btn" id="home-btn" type="button"> <img src="./assets/masterball.png" id="masterball", width = 55, height = "auto"> Home</button>
+    <button class="nav-btn" id="gallery-btn" type="button">Gallery</button>
+    <button class="nav-btn" id="wishlist-btn" type="button">Wishlist</button>
+  </div>
+    <h2>Sign In</h2>
+    <form class="auth-form" id="signin-form">
+        <input class="auth-field" type="text" id="username" placeholder="Username" required />
+        <input class="auth-field" type="password" id="password" placeholder="Password" required />
+        <button class="auth-btn" type="submit">Sign In</button>
+    </form>
+    <a href="signup.html" class="auth-link" id="signup-link">New User? - Sign Up</a>
+</body>
+<script src="scripts/nav.js" defer></script>
+<script src="scripts/auth_utils.js" defer></script>
+<script src="scripts/auth.js" defer></script>
+</html>

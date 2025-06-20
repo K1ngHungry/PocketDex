@@ -7,12 +7,16 @@
 
 </head>
 <body>
+  <div class="top-right" id="top-right">
+    <button id="signin-btn" class="index-btn">Sign in</button>
+    <button id="signup-btn" class="index-btn">Sign up</button>
+  </div>
+  <button id="signout-btn" class="index-btn top-right">Sign out</button>
+
   <div class="main">
     <h1>Welcome to P <img src="./assets/masterball.png" id = "masterball"> cketDex!</h1>
     <div class = "index-btns">
       <button id="gallery-btn" class="index-btn">Enter Card Gallery</button>
-      <button id="wishlist-btn" class="index-btn">View Wishlist</button>
-      <button id="login-btn" class="index-btn">Login</button>
     </div>
     <div class = "display-cards">
       <img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/pocket/A1/A1_280_EN.webp" class="display-card" style="--i:-5;">
@@ -23,5 +27,6 @@
     </div>
   </div>
 </body>
+<script src="scripts/auth_utils.js" defer></script>
 <script src="scripts/index.js" defer></script>
 </html>

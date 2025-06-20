@@ -6,10 +6,6 @@ const stageEl = document.getElementById('filter-stage');
 const rarityEl = document.getElementById('filter-rarity');
 const sortByEl = document.getElementById('sort-by');
 const resetBtn = document.getElementById('reset-button');
-const homeBtn = document.getElementById('home-btn');
-const galleryBtn = document.getElementById('gallery-btn');
-const wishlistBtn = document.getElementById('wishlist-btn');
-const logoutBtn = document.getElementById('logout-btn');
 
 const typeDict = {
   "Grass" : 0,
@@ -90,14 +86,6 @@ fetch('http://localhost:3000/sets')
     console.error(err);
   });
 
-//Load wishlist
-const user_id = 1;
-let wishlist = new Set();
-document.addEventListener("DOMContentLoaded", async () => {
-  wishlist = await loadWishlist(user_id);  // wait for it and assign result
-  console.log(wishlist);
-  renderCards();                           // now uses actual Set, not a Promise
-});
 
 searchEl.addEventListener('input',  renderCards);
 setEl.addEventListener('change', renderCards);
@@ -113,19 +101,16 @@ resetBtn.addEventListener('click', () => {
   sortByEl.value = "set-number";
   renderCards();
 });
-homeBtn.addEventListener('click', () => {
-  window.location.href = "index.html";
+
+let wishlist;
+document.addEventListener("DOMContentLoaded", async () => {
+  wishlist = await loadWishlist();
+  renderCards();
 });
-galleryBtn.addEventListener('click', () => {
-  window.location.href = "gallery.html";
-});
-wishlistBtn.addEventListener('click', () => {
-  window.location.href = "wishlist.html";
-});
-logoutBtn.addEventListener('click', () => {
-  logout();});
-window.addEventListener("pageshow", (event) => {
+
+window.addEventListener("pageshow", async (event) => {
   if (event.persisted) {
-    loadWishlist().then(() => renderCards());
+    wishlist = await loadWishlist();
+    renderCards();
   }
 });

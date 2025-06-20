@@ -1,0 +1,48 @@
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #e3ccdb;
+  margin: 7rem auto 1rem auto;
+  width: 25rem;               /* Match the form */
+  text-align: left;  
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  gap: 10px;
+  margin: 0 auto
+}
+
+.auth-field {
+    height: 3rem;
+    background-color : #fef4f9;
+    color : #000000;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.auth-btn {
+    height: 3rem;
+    background-color : #413947;
+    color : #fef4f9;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.auth-link {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.auth-link:hover {
+  color: #e3ccdb;
+}

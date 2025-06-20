@@ -1,12 +1,11 @@
 .main {
   display: flex;
   flex-direction: column;
-  padding-top: 20vh;
+  padding-top: 15vh;
 }
 
 body {
   font-family: "Arial Black", Gadget, sans-serif;
-  /* background-color: #dddddd; */
   background: #000000;
   background: linear-gradient(180deg, 
     rgba(0, 0, 0, 1) 0%, 
@@ -61,6 +60,28 @@ h1 {
 }
 .index-btn:hover {background-color: #000000;}
 
+button.index-btn#gallery-btn {
+  background-color: #af0858;
+  width: 20rem;
+  height: 4rem;
+  font-size: 20px;
+}
+
+button.index-btn#gallery-btn:hover {background-color: #7b0042;}
+
+.top-right {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.25rem; /* spacing between buttons */
+  z-index: 10;
+}
+
+.signin-top-right:hover {
+  background-color: #5a4e63;
+}
+
 .display-cards {
   position: absolute;
   bottom  : 5rem;
@@ -83,4 +104,28 @@ h1 {
 .display-card:hover {
   transform: translateX(-50%) rotate(calc(var(--i) * 4deg)) scale(1.08) translateY(-8px);
   z-index: 100; /* bring hovered card to front */
+}
+
+#signin-reminder {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #614e5f;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow:  0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.wishlist-message {
+  color: #fff;
+  width: 20rem;
+}
+
+#wishlist-signin-link {
+  color: #fff
 }

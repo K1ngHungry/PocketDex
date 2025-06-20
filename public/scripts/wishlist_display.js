@@ -1,9 +1,5 @@
 const container = document.getElementById('card-container');
-const homeBtn = document.getElementById('home-btn');
-const galleryBtn = document.getElementById('gallery-btn');
-const wishlistBtn = document.getElementById('wishlist-btn');
 
-const user_id = 1;
 let wishlist = new Set();
 
 async function renderWishlist(wishlist) {
@@ -21,7 +17,7 @@ async function renderWishlist(wishlist) {
   
   for (const card of cards) {
     const div = createCardElem(card);
-    const button = createRemoveBtn(user_id, card);
+    const button = createRemoveBtn(card);
     div.appendChild(button);
     container.appendChild(div);
   }
@@ -29,22 +25,26 @@ async function renderWishlist(wishlist) {
 
 //Load wishlist
 document.addEventListener("DOMContentLoaded", async () => {
-  wishlist = await loadWishlist(user_id);  // wait for it and assign result
-  console.log(wishlist);
-  renderWishlist(wishlist);                           // now uses actual Set, not a Promise
+  if (await isSignedIn()) {
+    wishlist = await loadWishlist();
+    console.log(wishlist);
+    renderWishlist(wishlist);   
+  }
+  else{
+    sessionStorage.setItem('returnTo', window.location.pathname);
+    container.innerHTML = `
+      <div class="wishlist-message">
+        Please 
+        <a href="signin.html" id="wishlist-signin-link">sign in</a>
+        to use wishlist
+      </div>
+    `;
+  }                        // now uses actual Set, not a Promise
 });
 
-homeBtn.addEventListener('click', () => {
-  window.location.href = "index.html";
-});
-galleryBtn.addEventListener('click', () => {
-  window.location.href = "gallery.html";
-});
-wishlistBtn.addEventListener('click', () => {
-  window.location.href = "wishlist.html";
-});
-window.addEventListener("pageshow", (event) => {
+window.addEventListener("pageshow", async (event) => {
   if (event.persisted) {
-    loadWishlist().then(() => renderCards());
+    wishlist = await loadWishlist()
+    renderWishList();
   }
 });

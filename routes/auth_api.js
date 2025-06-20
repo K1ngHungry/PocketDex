@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getUserByName, registerUser, loginUser } = require('../data/users');
+const { getUserByName, addUser, authUser } = require('../data/users');
 
 
-router.post('/register', async (req, res) => {
+router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -16,15 +16,15 @@ router.post('/register', async (req, res) => {
   }
 
   try {
-    await registerUser(username, password);  // plain-text password
-    res.status(201).json({ success: true, message: 'User registered successfully' });
+    await addUser(username, password);  // plain-text password
+    res.status(201).json({ success: true, message: 'User signuped successfully' });
   } catch (err) {
     console.error('Registration error:', err);
-    res.status(500).json({ error: 'Failed to register user' });
+    res.status(500).json({ error: 'Failed to signup user' });
   }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/signin', async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
   }
 
   try {
-    const result = await loginUser(username, password);
+    const result = await authUser(username, password);
     if (result.success) {
       req.session.user_id = result.user_id;
       res.json(result);
@@ -40,21 +40,39 @@ router.post('/login', async (req, res) => {
       res.status(401).json({ error: result.message });
     }
   } catch (err) {
-    console.error('Login error:', err);
+    console.error('Signin error:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post('/signout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
-      console.error('Logout error:', err);
-      return res.status(500).json({ error: 'Failed to log out' });
+      console.error('Signout error:', err);
+      return res.status(500).json({ error: 'Failed to sign out' });
     }
 
     res.clearCookie('connect.sid'); // 'connect.sid' is the default session cookie name
     res.json({ message: 'Logged out' });
   });
+});
+
+router.get('/user', async (req, res) => {
+  if (!req.session.user_id) {
+    return res.json({ signedIn: false });
+  }
+
+  try {
+    const user = await getUserByName(req.session.username);
+    res.json({
+      signedIn: true,
+      user_id: req.session.user_id,
+      username: req.session.username || (user?.username ?? null)
+    });
+  } catch (err) {
+    console.error('Auth check error:', err);
+    res.status(500).json({ signedIn: false, error: 'Internal error' });
+  }
 });
 
 module.exports = router;

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Pokémon TCG Gallery</title>
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/nav.css">
   <link rel="stylesheet" href="styles/gallery.css">
 </head>
 <body>
@@ -11,7 +12,14 @@
     <button class="nav-btn" id="home-btn" type="button"> <img src="./assets/masterball.png" id="masterball", width = 55, height = "auto"> Home</button>
     <button class="nav-btn" id="gallery-btn" type="button">Gallery</button>
     <button class="nav-btn" id="wishlist-btn" type="button">Wishlist</button>
-    <button class="nav-btn" id="logout-btn">Log out</button>
+    <div id="profile-dropdown" class="profile-container">
+      <img src="./assets/profile.png" alt="Profile" id="profile-icon">
+      <div class="dropdown-content" id="dropdown-content">
+        <button id="drop-profile">Profile</button>
+        <button id="drop-signout">Sign out</button>
+      </div>
+      <button id="nav-signin">Sign in</button>
+    </div>
   </div>
 
   <h1 class="subheading">Pokémon TCGP Card Gallery</h1>
@@ -74,9 +82,10 @@
     <div id="card-container" class="card-grid"></div>
   </div>
 
+  <script src="scripts/auth_utils.js" defer></script>
+  <script src="scripts/nav.js" defer></script>
   <script src="scripts/wishlist_utils.js" defer></script>
   <script src="scripts/card_utils.js" defer></script>
-  <script src="scripts/auth_utils.js" defer></script>
   <script src="scripts/gallery.js" defer></script>
 </body>
 </html>
