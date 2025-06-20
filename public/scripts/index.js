@@ -8,10 +8,10 @@ const topRight = document.getElementById('top-right')
 async function updateButtons() {
   if (await isSignedIn()) {
     topRight.style.display = 'none';
-    signoutBtn.style.display = 'flex';
+    signoutBtn.style.display = 'block';
   }
   else {
-    topRight.style.display = 'flex';
+    topRight.style.display = 'block';
     signoutBtn.style.display = 'none';
   }
 }
