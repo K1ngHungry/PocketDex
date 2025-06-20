@@ -47,12 +47,12 @@ function createWishlistBtn(card) {
   return button;
 }
 
-function createRemoveBtn(user_id, card) {
+function createRemoveBtn(card) {
   const button = document.createElement("button");
   button.className = "wishlist-remove";
   button.textContent = "✖";
   button.addEventListener("click", async () => {
-      await removeFromWishlist(user_id, card);
+      await removeFromWishlist(card);
       wishlist.delete(`${card.set_id}-${card.set_number}`);
       renderWishlist(wishlist);
   });
