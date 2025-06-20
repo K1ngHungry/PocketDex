@@ -61,7 +61,7 @@ async function renderCards() {
   if (rarityEl.value) params.append("rarity", rarityEl.value);
   if (sortByEl.value) params.append("sortby", sortByEl.value);
 
-  const response = await fetch(`http://localhost:3000/cards?${params.toString()}`);
+  const response = await fetch(`/cards?${params.toString()}`);
   const cards = await response.json();
 
   container.innerHTML = '';

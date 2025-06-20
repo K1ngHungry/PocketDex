@@ -8,7 +8,7 @@ async function renderWishlist(wishlist) {
     const [set_id, set_number] = card_id.split('-');
     return { set_id, set_number: parseInt(set_number) };
   });
-  const response = await fetch('http://localhost:3000/cards/batch', {
+  const response = await fetch('/cards/batch', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cards: card_ids })

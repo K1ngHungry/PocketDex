@@ -11,12 +11,12 @@ const authRoutes = require("./routes/auth_api");
 app.use(express.static('public'));
 app.use(express.json());
 app.use(session({
-  secret: process.env.SESSION_SECRET,         // 🔒 use an environment variable in production
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    sameSite: 'lax',                 // or 'strict' for stronger CSRF protection
+    sameSite: 'lax',   
     secure: process.env.NODE_ENV === 'production'                    // set to true if using HTTPS
   }
 }));
@@ -27,5 +27,5 @@ app.use('/wishlist', wListRoutes);
 app.use('/auth', authRoutes);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server running at http://localhost:${process.env.PORT}`);
+  console.log(`Server running at ${process.env.PORT}`);
 });

@@ -1,6 +1,6 @@
 async function loadWishlist() {
   try {
-    const res = await fetch('http://localhost:3000/wishlist', {
+    const res = await fetch('/wishlist', {
       credentials: 'include'
     });
     const data = await res.json();
@@ -18,7 +18,7 @@ async function addToWishlist(card) {
   const set_number = card.set_number;
   console.log("Sending to backend:", { set_id, set_number });
   try {
-    const res = await fetch('http://localhost:3000/wishlist', {
+    const res = await fetch('/wishlist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -35,7 +35,7 @@ async function removeFromWishlist(card) {
   const set_id = card.set_id;
   const set_number = card.set_number;
   try {
-    const res = await fetch('http://localhost:3000/wishlist', {
+    const res = await fetch('/wishlist', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
