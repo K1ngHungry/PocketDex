@@ -79,10 +79,6 @@ button.index-btn#gallery-btn:hover {background-color: #7b0042;}
   z-index: 10;
 }
 
-.auth-top-right:hover {
-  display: none;
-}
-
 .display-cards {
   position: absolute;
   bottom  : 5rem;
