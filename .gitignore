@@ -1,0 +1,34 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Python bytecode (in case __pycache__ is from a script)
+__pycache__/
+*.py[cod]
+
+# DB/Local config files (if you ever export dumps or temporary data)
+*.sqlite
+*.db
+*.sql~
+
+# Ignore build artifacts (if you later add any)
+dist/
+build/
+
+# Misc
+.env.local
+.env.*.local
