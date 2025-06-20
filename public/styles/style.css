@@ -70,13 +70,16 @@ button.index-btn#gallery-btn {
 button.index-btn#gallery-btn:hover {background-color: #7b0042;}
 
 .top-right {
-  display: none;
   position: absolute;
   top: 1rem;
   right: 1rem;
   display: flex;
   gap: 0.25rem; /* spacing between buttons */
   z-index: 10;
+}
+
+.signin-top-right:hover {
+  background-color: #5a4e63;
 }
 
 .display-cards {
