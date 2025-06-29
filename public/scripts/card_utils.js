@@ -55,7 +55,7 @@ function createRemoveBtn(card, filtered) {
       await removeFromWishlist(card);
       wishlist.delete(`${card.set_id}-${card.set_number}`);
       filtered.delete(`${card.set_id}-${card.set_number}`);
-      renderWishlist(filtered);
+      renderWishlist(filtered, card.set_id);
   });
   return button;
 }

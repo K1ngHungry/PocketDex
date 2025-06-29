@@ -21,7 +21,19 @@ function setName(set_id) {
   return s ? s.name : '';
 }
 
-async function loadPacks(set_id) {
+async function allPacks() {
+  try {
+    const res  = await fetch(`/packs`);
+    const data = await res.json();
+    return data;
+  } 
+  catch (err) {
+    console.error('Failed to load packs:', err);
+    return [];
+  }
+}
+
+async function getPacks(set_id) {
   try {
     const res  = await fetch(`/packs/${set_id}`);
     const data = await res.json();

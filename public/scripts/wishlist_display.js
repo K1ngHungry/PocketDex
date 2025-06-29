@@ -22,7 +22,6 @@ function countPacks(cards, packs) {
   }
 
   for (let card of cards) {
-    // normalize: use the pack name, or fall back to "Unknown"
     const pack = card.pack && counts.hasOwnProperty(card.pack)
       ? card.pack
       : "Unknown";
@@ -36,7 +35,8 @@ function backToSets() {
   renderSets(wishlist, sets);
 }
 
-function backToPacks(set_id) {
+async function backToPacks(set_id) {
+  packs = await getPacks(set_id);
   renderPacks(wishlist, set_id);
 }
 
@@ -97,7 +97,12 @@ async function renderSets(wishlist, sets) {
   tbody.querySelectorAll('tr[data-set]').forEach(tr => {
     tr.addEventListener('click', async () => {
       const set_id = tr.dataset.set;
-      packs = await loadPacks(set_id);
+      if (set_id === "all") {
+        packs = await allPacks();
+      }
+      else {
+        packs = await getPacks(set_id);
+      }
       renderPacks(wishlist, set_id);
     });
   });
@@ -111,9 +116,15 @@ async function renderPacks(wishlist, set_id) {
   backBtn.onclick = backToSets;
 
  // 2) Build the subset of wishlist IDs for this set
-  const filteredCards = Array.from(wishlist)
+ let filteredCards;
+  if (set_id === 'all') {
+    filteredCards = Array.from(wishlist).map(parseCardStr);
+  }
+  else {
+    filteredCards = Array.from(wishlist)
     .filter(id => id.startsWith(set_id + "-"))
     .map(parseCardStr);
+  }
   
   const idStrings = filteredCards.map(({ set_id, set_number }) => `${set_id}-${set_number}`);
   const setList = new Set(idStrings);
@@ -150,13 +161,7 @@ async function renderPacks(wishlist, set_id) {
   });
   tbody.appendChild(allRow);
 
-  // 7) One row per pack
-  // console.log(packs.size);
-  // if(packs.size === 0) {
-  //   console.log("Here");
-  //   renderWishlist(setList);
-  // }
-  // else {
+  //Other packs
     for (let [pack, count] of Object.entries(packCounts)) {
       const tr = document.createElement("tr");
       tr.dataset.pack = pack;
@@ -182,7 +187,7 @@ async function renderWishlist(filtered, set_id) {
   card_container.innerHTML = '';
   pack_table.innerHTML = '';
   backBtn.style.display = 'block';
-  backBtn.onclick = () => backToPacks(set_id);
+  backBtn.onclick = async () => await backToPacks(set_id);
 
   const card_ids = Array.from(filtered).map(parseCardStr);
   const response = await fetch('/cards/batch', {
