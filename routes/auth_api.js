@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getUserByName, addUser, authUser } = require('../data/users');
+const { getUserById, getUserByName, addUser, authUser } = require('../data/users');
 
 
 router.post('/signup', async (req, res) => {
@@ -63,11 +63,11 @@ router.get('/user', async (req, res) => {
   }
 
   try {
-    const user = await getUserByName(req.session.username);
+    const user = await getUserById(req.session.user_id);
     res.json({
       signedIn: true,
-      user_id: req.session.user_id,
-      username: req.session.username || (user?.username ?? null)
+      user_id: user.user_id,
+      username: user.username
     });
   } catch (err) {
     console.error('Auth check error:', err);

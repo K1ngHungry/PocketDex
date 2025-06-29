@@ -7,6 +7,7 @@ const setRoutes = require("./routes/sets_api");
 const cardRoutes = require("./routes/cards_api");
 const wListRoutes = require("./routes/wishlist_api");
 const authRoutes = require("./routes/auth_api");
+const packRoutes = require('./routes/packs_api');
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use('/sets', setRoutes);
 app.use('/cards', cardRoutes);
 app.use('/wishlist', wListRoutes);
 app.use('/auth', authRoutes);
+app.use('/packs', packRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running at ${process.env.PORT}`);

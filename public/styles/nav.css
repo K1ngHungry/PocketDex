@@ -52,13 +52,19 @@
   top: 4rem;
   background-color: #46225c;
   color: #ffffff;
-  min-width: 13rem;
+  min-width: 12rem;
   box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
   z-index: 1001;
   border-radius: 5px;
   overflow: hidden;
 }
 
+.drop-user {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  padding-top: 10px;
+  padding-left: 10px;
+}
 .dropdown-content button {
   background-color: transparent;
   color: #ffffff;
@@ -88,4 +94,12 @@
   padding: 10px 20px;
   border-radius: 16px;
   border: none;
+}
+
+.dropdown-username {
+  padding: 0.5rem 1rem;
+  color: #333;
+  font-weight: bold;
+  cursor: default;
+  user-select: none;
 }

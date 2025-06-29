@@ -7,7 +7,7 @@ async function getUsers() {
 }
 async function getUserById(user_id) {
   const [rows] = await pool.query('SELECT * FROM users WHERE user_id = ?', [user_id]);
-  return rows;
+  return rows[0];
 }
 
 async function getUserByName(username) {

@@ -4,6 +4,7 @@ const wishlistBtn = document.getElementById('wishlist-btn');
 const signoutBtn = document.getElementById('signout-btn');
 const profileIcon = document.getElementById('profile-icon');
 const profileDropdown = document.getElementById('profile-dropdown');
+const dropUser = document.getElementById('drop-user');
 const dropSignout = document.getElementById('drop-signout');
 const navSignin = document.getElementById('nav-signin');
 
@@ -21,6 +22,13 @@ const navSignin = document.getElementById('nav-signin');
     if (await isSignedIn()) {
       profileIcon.style.display = "block";
       navSignin.style.display = "none";
+      const resp = await fetch('/auth/user', {
+        method: 'GET',
+        credentials: 'include'
+      });
+      const user = await resp.json();
+      console.log(user);
+      dropUser.textContent = user.username;
     }
     else {
       profileIcon.style.display = "none";
