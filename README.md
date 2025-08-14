@@ -1,6 +1,6 @@
 # PocketDex 🎴
 
-A comprehensive web application for browsing and managing Pokémon Trading Card Game (TCG) cards in the Pocket format. PocketDex provides an intuitive interface for card enthusiasts to explore sets, filter cards, and maintain personal wishlists.
+A comprehensive web application for browsing and managing Pokémon Trading Card Game (TCG) cards in Pocket. PocketDex provides an intuitive interface for card enthusiasts to explore sets, filter cards, and maintain personal wishlists.
 
 ## 🌟 Features
 
@@ -39,13 +39,6 @@ A comprehensive web application for browsing and managing Pokémon Trading Card 
 - **Limitless TCG Integration**: Data sourced from pocket.limitlesstcg.com
 - **Automated Updates**: Scripts for maintaining current card information
 
-## 📋 Prerequisites
-
-- **Node.js** (v14 or higher)
-- **MySQL** (v8.0 or higher)
-- **Python** (v3.7 or higher) - for data scraping
-- **npm** or **yarn** package manager
-
 ## 🚀 Installation
 
 ### 1. Clone the Repository
@@ -60,22 +53,16 @@ npm install
 ```
 
 ### 3. Set Up Environment Variables
-Create a `.env` file in the root directory:
-```env
-# Server Configuration
-PORT=3000
-NODE_ENV=development
+Create a `.env` file in the root directory with the following variables:
+- `PORT` - Server port (default: 3000)
+- `NODE_ENV` - Environment (development/production)
+- `DB_HOST` - Database host
+- `DB_PORT` - Database port
+- `DB_USER` - Database username
+- `DB_PW` - Database password
+- `DB_NAME` - Database name
+- `SESSION_SECRET` - Secret key for session management
 
-# Database Configuration
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=your_username
-DB_PW=your_password
-DB_NAME=pocketdex
-
-# Session Configuration
-SESSION_SECRET=your_session_secret_key
-```
 
 ### 4. Database Setup
 ```bash
@@ -137,77 +124,17 @@ PocketDex/
     └── AttackInfo.py
 ```
 
-## 🗄️ Database Schema
+## 🗄️ Database
 
-### Tables
-- **sets**: Set information (ID, name, release date, card count)
-- **cards**: Card details (stats, type, stage, rarity, etc.)
-- **attacks**: Individual attack data for Pokémon cards
-- **users**: User authentication data
-- **wishlists**: User-card relationships for wishlists
+The application uses a MySQL database with tables for sets, cards, attacks, users, and wishlists. The schema is defined in `data/schema.sql`.
 
-## 🔧 API Endpoints
+## 🔧 API
 
-### Authentication
-- `POST /auth/signup` - User registration
-- `POST /auth/signin` - User login
-- `POST /auth/signout` - User logout
-- `GET /auth/user` - Get current user info
+The application provides RESTful API endpoints for authentication, card management, set information, and wishlist functionality.
 
-### Cards
-- `GET /cards` - Get filtered cards
-- `POST /cards/batch` - Get cards by ID list
+## 🔒 Security
 
-### Sets
-- `GET /sets` - Get all sets
-- `GET /sets/:id` - Get specific set
-
-### Wishlists
-- `GET /wishlist` - Get user's wishlist
-- `POST /wishlist` - Add card to wishlist
-- `DELETE /wishlist` - Remove card from wishlist
-
-### Packs
-- `GET /packs` - Get pack information
-
-## 🎨 Customization
-
-### Styling
-Modify CSS files in `public/styles/` to customize the appearance:
-- `style.css` - Global styles
-- `nav.css` - Navigation bar styling
-- `gallery.css` - Card gallery layout
-- `auth.css` - Authentication page styling
-
-### Adding New Sets
-1. Update the set options in `public/gallery.html`
-2. Run the scraping script to collect new card data
-3. Import the data into the database
-
-## 🔒 Security Features
-
-- **Password Hashing**: Bcrypt for secure password storage
-- **Session Management**: Secure session cookies with httpOnly flag
-- **Input Validation**: Server-side validation for all user inputs
-- **SQL Injection Prevention**: Parameterized queries
-- **XSS Protection**: Content Security Policy headers
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Database Connection Error**
-- Verify MySQL is running
-- Check environment variables in `.env`
-- Ensure database exists: `CREATE DATABASE pocketdex;`
-
-**Port Already in Use**
-- Change the PORT in `.env` file
-- Kill existing processes: `lsof -ti:3000 | xargs kill`
-
-**Missing Dependencies**
-- Run `npm install` to install Node.js dependencies
-- Install Python dependencies: `pip install requests beautifulsoup4 mysql-connector-python lxml`
+The application implements several security measures including password hashing, secure session management, input validation, and protection against common web vulnerabilities.
 
 ## 🙏 Acknowledgments
 
