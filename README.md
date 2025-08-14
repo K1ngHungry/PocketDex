@@ -2,7 +2,7 @@
 
 A comprehensive web application for browsing and managing Pokémon Trading Card Game (TCG) cards in Pocket. PocketDex provides an intuitive interface for card enthusiasts to explore sets, filter cards, and maintain personal wishlists.
 
-## 🌟 Features
+## Features
 
 ### Card Gallery
 - **Comprehensive Card Database**: Browse thousands of Pokémon TCG Pocket format cards
@@ -21,7 +21,7 @@ A comprehensive web application for browsing and managing Pokémon Trading Card 
 - **Organized Viewing**: View wishlists by sets and packs
 - **Easy Management**: Add and remove cards with simple interactions
 
-## 🏗️ Architecture
+## Architecture
 
 ### Backend
 - **Node.js/Express**: RESTful API server
@@ -39,7 +39,7 @@ A comprehensive web application for browsing and managing Pokémon Trading Card 
 - **Limitless TCG Integration**: Data sourced from pocket.limitlesstcg.com
 - **Automated Updates**: Scripts for maintaining current card information
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the Repository
 ```bash
@@ -81,7 +81,7 @@ cd scraping
 python limitless_scraper.py
 ```
 
-## 🎯 Usage
+## Usage
 
 ### Starting the Application
 ```bash
@@ -124,19 +124,19 @@ PocketDex/
     └── AttackInfo.py
 ```
 
-## 🗄️ Database
+## Database
 
 The application uses a MySQL database with tables for sets, cards, attacks, users, and wishlists. The schema is defined in `data/schema.sql`.
 
-## 🔧 API
+## API
 
 The application provides RESTful API endpoints for authentication, card management, set information, and wishlist functionality.
 
-## 🔒 Security
+## Security
 
 The application implements several security measures including password hashing, secure session management, input validation, and protection against common web vulnerabilities.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Limitless TCG**: Card data and images sourced from [pocket.limitlesstcg.com](https://pocket.limitlesstcg.com)
 - **Pokémon Company**: Pokémon TCG intellectual property
